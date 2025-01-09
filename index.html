@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resizable Modal with iFrame</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Modal styles */
+    .modal4 {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .modal4 iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Overlay */
+    .overlay4 {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="openModal(900, 800, 'https://roboreactor.com/motion_control/eyJlbWFpbCI6Imtvcm5ib3QzODBAaG90bWFpbC5jb20iLCJwcm9qZWN0X25hbWUiOiJTbWFydF9Sb2JvdHMifQ==')">Open Modal</button>
+
+  <div class="overlay4" id="overlay" onclick="closeModal()"></div>
+
+  <div class="modal4" id="modal">
+    <iframe id="modalIframe" src=""></iframe>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const overlay = document.getElementById('overlay');
+    const iframe = document.getElementById('modalIframe');
+
+    /**
+     * Open the modal and set its size and iframe source
+     * @param {number} width - Width of the modal
+     * @param {number} height - Height of the modal
+     * @param {string} src - URL for the iframe
+     */
+    function openModal(width, height, src) {
+      modal.style.width = width + 'px';
+      modal.style.height = height + 'px';
+      iframe.src = src;
+      modal.style.display = 'block';
+      overlay.style.display = 'block';
+    }
+
+    /**
+     * Close the modal
+     */
+    function closeModal() {
+      modal.style.display = 'none';
+      overlay.style.display = 'none';
+      iframe.src = ''; // Clear iframe source for better performance
+    }
+  </script>
+</body>
+</html>
